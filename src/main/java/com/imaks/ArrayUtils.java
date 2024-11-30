@@ -3,14 +3,14 @@ package com.imaks;
 import java.util.Arrays;
 
 public class ArrayUtils {
-    public void mergeSort(int[] array) {
+    public <T extends Comparable<T>> void mergeSort(T[] array) {
         if (array.length <= 1) {
             System.out.println("Base case worked out.");
             return;
         }
         int middle = array.length / 2;
-        int[] left = Arrays.copyOfRange(array, 0, middle);
-        int[] right = Arrays.copyOfRange(array, middle, array.length);//to – the final index of the range to be copied, exclusive. (This index may lie outside the array.)
+        T[] left = Arrays.copyOfRange(array, 0, middle);
+        T[] right = Arrays.copyOfRange(array, middle, array.length);//to – the final index of the range to be copied, exclusive. (This index may lie outside the array.)
 
         System.out.println("Ділимо: " + Arrays.toString(array) + " -> " +
                 Arrays.toString(left) + " | " + Arrays.toString(right));
@@ -24,14 +24,14 @@ public class ArrayUtils {
                 " -> " + Arrays.toString(array));
     }
 
-    private void merge(int[] array, int[] left, int[] right) {
+    private <T extends Comparable<T>> void merge(T[] array, T[] left, T[] right) {
         int i = 0;//current index of left
         int j = 0;//current index of right
         int k = 0;//current index of array
 
         //в цикл входять лише вже відсортовані масиви
         while (i < left.length && j < right.length) {//після циклу залишиться лише один масив з двох
-            if (left[i] <= right[j]) {
+            if (left[i].compareTo(right[j]) <= 0) {
                 array[k++] = left[i++];
             } else {
                 array[k++] = right[j++];
@@ -45,18 +45,18 @@ public class ArrayUtils {
         }
     }
 
-    public int binarySearch(int[] array, int target) {
+    public <T extends Comparable<T>> int binarySearch(T[] array, T target) {
         int left = 0;
         int right = array.length - 1;
 
         while (left <= right) {
             int middle = left + (right - left) / 2;
 
-            if (array[middle] == target) {
+            if (array[middle].compareTo(target) == 0) {
                 System.out.println("Binary search: " + target + " found in position " + middle);
                 return middle;
             }
-            if (target < array[middle]) {
+            if (target.compareTo(array[middle]) < 0) {
                 right = middle - 1;
             } else {
                 left = middle + 1;
