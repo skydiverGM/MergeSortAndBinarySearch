@@ -15,5 +15,7 @@ public class Main {
 
         int found = arrayUtils.binarySearch(array, 24);
         int unfound = arrayUtils.binarySearch(array, 0);
+
+        AnnotationProcessor.processAnnotation(ArrayUtils.class);
     }
 }

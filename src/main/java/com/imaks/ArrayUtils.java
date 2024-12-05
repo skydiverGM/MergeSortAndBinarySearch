@@ -3,6 +3,8 @@ package com.imaks;
 import java.util.Arrays;
 
 public class ArrayUtils {
+    @MethodInfo(description = "Sorts arrays of any type, ordering them from min to max.")
+    @Author(firstName = "Tony", lastName = "Stark")
     public <T extends Comparable<T>> void mergeSort(T[] array) {
         if (array.length <= 1) {
             System.out.println("Base case worked out.");
@@ -44,7 +46,10 @@ public class ArrayUtils {
             array[k++] = right[j++];
         }
     }
-
+    @MethodInfo(description = "Finds the position of a target value within " +
+            "a sorted array by repeatedly dividing the search interval in half, " +
+            "comparing the middle element to the target.")
+    @Author(firstName = "John", lastName = "Wick")
     public <T extends Comparable<T>> int binarySearch(T[] array, T target) {
         int left = 0;
         int right = array.length - 1;
@@ -65,4 +70,5 @@ public class ArrayUtils {
         System.out.println("Binary search: " + target + " not fount");
         return -1;
     }
+
 }
